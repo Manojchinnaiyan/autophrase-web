@@ -327,7 +327,7 @@ app.post('/api/usage/record', async (c) => {
 // the UI but not yet purchasable. `periodDays: 36500` (~100 years) is the
 // idiomatic way to represent "lifetime" without inventing a special flag.
 const PLANS: Record<string, { amountPaise: number; currency: string; label: string; periodDays: number }> = {
-  pro_lifetime: { amountPaise: 200000, currency: 'INR', label: 'Pro · lifetime', periodDays: 36500 },
+  pro_lifetime: { amountPaise: 50000, currency: 'INR', label: 'Pro · lifetime', periodDays: 36500 },
 };
 
 app.post('/api/billing/create-order', async (c) => {

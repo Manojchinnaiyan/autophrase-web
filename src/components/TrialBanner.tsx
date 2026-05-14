@@ -25,15 +25,16 @@ export function TrialBanner({ status }: TrialBannerProps) {
     );
   }
   const left = daysLeft(status.trialEndsAt);
+  if (left > 7) return null;
   return (
-    <div className="mx-auto mb-4 flex max-w-3xl flex-col items-start gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700 sm:flex-row sm:items-center dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300">
+    <div className="mx-auto mb-4 flex max-w-3xl flex-col items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 sm:flex-row sm:items-center dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300">
       <Sparkles size={14} className="mt-0.5 flex-shrink-0" />
       <div className="flex-1">
         <div className="font-medium">
           Free trial · {left} {left === 1 ? 'day' : 'days'} left
         </div>
-        <div className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-          You've used {status.requestCount} {status.requestCount === 1 ? 'request' : 'requests'} so far.
+        <div className="mt-0.5 text-xs text-amber-700 dark:text-amber-400">
+          Upgrade to Pro before your trial ends.
         </div>
       </div>
       <Link to="/pricing" className="btn-secondary h-8 w-full text-xs sm:w-auto">

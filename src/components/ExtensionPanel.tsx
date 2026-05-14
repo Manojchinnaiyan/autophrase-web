@@ -84,17 +84,8 @@ export function ExtensionPanel({ licenseKey }: Readonly<{ licenseKey: string }>)
                 value={licenseKey}
                 onFocus={(e) => e.currentTarget.select()}
                 aria-label="License key"
-                className="input h-11 select-all pr-10 font-mono text-xs sm:h-10"
+                className="input h-11 select-all font-mono text-xs sm:h-10"
               />
-              <button
-                type="button"
-                onClick={copyKey}
-                className="btn-ghost absolute right-1 top-1/2 h-9 w-9 -translate-y-1/2 p-0 sm:h-8 sm:w-8"
-                title="Copy"
-                aria-label="Copy license key"
-              >
-                {copied ? <Check size={14} className="text-emerald-500" /> : <Copy size={13} />}
-              </button>
             </div>
             <button
               onClick={copyKey}

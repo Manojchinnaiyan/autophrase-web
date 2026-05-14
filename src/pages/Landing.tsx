@@ -31,7 +31,7 @@ export function Landing() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
               </span>
-              <span>Now in beta · 7-day free trial</span>
+              <span>Now in beta · 30-day free trial</span>
             </div>
 
             <h1 className="mt-5 text-[34px] font-semibold leading-[1.08] tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-zinc-100 animate-fade-in-up delay-200">
@@ -56,14 +56,14 @@ export function Landing() {
               </Link>
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-2xs text-zinc-500 animate-fade-in-up delay-700 dark:text-zinc-400 lg:justify-start">
-              <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> No credit card
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 animate-fade-in-up delay-700 lg:justify-start">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:ring-emerald-800">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{' '}No credit card required
               </span>
-              <span className="text-zinc-300 dark:text-zinc-700">·</span>
-              <span>Cancel anytime</span>
-              <span className="hidden text-zinc-300 sm:inline dark:text-zinc-700">·</span>
-              <span className="hidden sm:inline">Keys never touch our servers</span>
+              <span className="text-xs text-zinc-400 dark:text-zinc-500">·</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">Cancel anytime</span>
+              <span className="hidden text-xs text-zinc-400 sm:inline dark:text-zinc-500">·</span>
+              <span className="hidden text-xs text-zinc-500 sm:inline dark:text-zinc-400">Keys never touch our servers</span>
             </div>
           </div>
 
@@ -145,7 +145,7 @@ export function Landing() {
           {/* Connector line behind the steps */}
           <div className="absolute left-[10%] right-[10%] top-7 hidden h-px bg-gradient-to-r from-transparent via-zinc-200 to-transparent md:block dark:via-zinc-800" />
           <Reveal delay={0}>
-            <Step n="1" icon={<KeyRound size={14} />} title="Sign up & add a key" body="7-day trial. Paste an API key from Anthropic, OpenAI, or Google." />
+            <Step n="1" icon={<KeyRound size={14} />} title="Sign up & add a key" body="30-day free trial, no credit card. Paste an API key from Anthropic, OpenAI, or Google." />
           </Reveal>
           <Reveal delay={150}>
             <Step n="2" icon={<Wand2 size={14} />} title="Pick a model" body="Switch between providers and models on the fly. Your choice is remembered per session." />
@@ -183,10 +183,10 @@ export function Landing() {
             <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 animate-blob-slow rounded-full bg-pink-200/40 blur-3xl dark:bg-pink-500/20" />
 
             <h2 className="relative text-[26px] font-semibold leading-tight tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-              Try it free for 7 days
+              Try it free for 30 days
             </h2>
             <p className="relative mx-auto mt-3 max-w-lg text-sm text-zinc-600 sm:text-base dark:text-zinc-400">
-              Full access during the trial. After that, a single ₹2,000 payment unlocks Pro for
+              Full access during the trial. After that, a single ₹500 payment unlocks Pro for
               life — no subscription. Your AI keys, your costs.
             </p>
             <div className="relative mt-6 flex flex-col items-stretch gap-3 sm:mt-7 sm:flex-row sm:items-center sm:justify-center">
@@ -201,6 +201,11 @@ export function Landing() {
                 See pricing
               </Link>
             </div>
+            <p className="relative mt-4 text-xs text-zinc-500 dark:text-zinc-400">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{' '}No credit card required
+              </span>
+            </p>
           </div>
         </Reveal>
       </section>

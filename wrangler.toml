@@ -22,5 +22,5 @@ migrations_dir = "migrations"
 # Public-safe runtime config. Secrets (Razorpay keys, etc.) go via
 # `wrangler secret put RAZORPAY_KEY_SECRET`.
 [vars]
-TRIAL_DAYS = "7"
+TRIAL_DAYS = "30"
 APP_URL = "https://autophrase.online"

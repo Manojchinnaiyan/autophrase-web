@@ -23,12 +23,13 @@ interface Plan {
  * silent — Pricing is a marketing page and shouldn't break on a backend miss.
  */
 const FALLBACK_PLANS: Plan[] = [
-  { id: 'pro_lifetime', label: 'Pro · lifetime', amountPaise: 200000, currency: 'INR', periodDays: 36500 },
+  { id: 'pro_lifetime', label: 'Pro · lifetime', amountPaise: 50000, currency: 'INR', periodDays: 36500 },
 ];
 
 const TRIAL_FEATURES = [
-  '7 days of full access',
+  '30 days of full access',
   'Bring your own Anthropic, OpenAI, or Google key',
+  'Unlimited chat via Chrome Gemini Nano (no API key needed)',
   'Streaming responses',
   'Keys stored locally',
 ];
@@ -166,6 +167,11 @@ export function Pricing() {
         <p className="mx-auto mt-3 max-w-md text-sm text-zinc-500 sm:text-base dark:text-zinc-400">
           You pay for the tool. AI costs come from your own provider account.
         </p>
+        <div className="mt-4 flex justify-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:ring-emerald-800">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{' '}30-day free trial · No credit card required
+          </span>
+        </div>
       </div>
 
       {err && (
@@ -182,7 +188,7 @@ export function Pricing() {
           <PlanCard
             label="Free trial"
             price="₹0"
-            cycle="/ 7 days"
+            cycle="/ 30 days"
             tone="neutral"
             highlight={false}
             features={TRIAL_FEATURES}
