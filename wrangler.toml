@@ -1,0 +1,26 @@
+name = "autophrase-web"
+main = "worker/index.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+# Serve the built Vite SPA from the Worker. The Worker handles /api/* and
+# falls back to the static assets for every other route.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+# D1 — users, sessions, subscriptions, trial usage.
+# Create with: npx wrangler d1 create autophrase-db
+# Then paste the returned database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "autophrase-db"
+database_id = "15e908a4-98b0-4ee4-b469-0e795d7423ae"
+migrations_dir = "migrations"
+
+# Public-safe runtime config. Secrets (Razorpay keys, etc.) go via
+# `wrangler secret put RAZORPAY_KEY_SECRET`.
+[vars]
+TRIAL_DAYS = "7"
+APP_URL = "https://autophrase.online"

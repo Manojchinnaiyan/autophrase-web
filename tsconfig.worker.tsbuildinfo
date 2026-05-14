@@ -1,0 +1,1 @@
+{"root":["./worker/crypto.ts","./worker/db.ts","./worker/index.ts","./worker/types.ts"],"version":"5.9.3"}

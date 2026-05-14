@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  /* Stop the aurora blobs from inducing horizontal scroll on mobile. */
+  overflow-x: clip;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar in chat scrollers — quieter on every browser */
+.scroll-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+.scroll-quiet::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-quiet::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+.dark .scroll-quiet {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+.dark .scroll-quiet::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  /* Animated blobs — only used on the Landing hero where motion earns its
+     pixels. We avoid `mix-blend-mode` entirely because:
+       - `screen` is invisible on white pages
+       - `multiply` desaturates colors to a muddy gray
+     Instead we use pale base colors at a tight opacity, with a heavy blur
+     so the edges never feel sharp. */
+  .hero-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.45;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .dark .hero-blob {
+    opacity: 0.3;
+  }
+
+  /* Static radial-gradient mesh — applied to <body> so it spans the entire
+     viewport (not constrained by per-page container widths) and stays put
+     while you scroll via `background-attachment: fixed`. Uses
+     `background-image` (not the shorthand) so it composites on top of the
+     existing background-color from Tailwind utilities. */
+  .bg-aurora {
+    background-image:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 88% 15%, rgba(236, 72, 153, 0.09) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 12% 25%, rgba(245, 158, 11, 0.07) 0%, transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  .dark .bg-aurora {
+    background-image:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(139, 92, 246, 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 88% 15%, rgba(236, 72, 153, 0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 12% 25%, rgba(245, 158, 11, 0.09) 0%, transparent 60%);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(
+      120deg,
+      #6366f1 0%,
+      #8b5cf6 25%,
+      #ec4899 50%,
+      #f59e0b 75%,
+      #6366f1 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 12s ease infinite;
+  }
+  .dark .text-gradient {
+    background-image: linear-gradient(
+      120deg,
+      #a78bfa 0%,
+      #c084fc 25%,
+      #f472b6 50%,
+      #fbbf24 75%,
+      #a78bfa 100%
+    );
+  }
+
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-900 { animation-delay: 900ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+  .delay-2000 { animation-delay: 2000ms; }
+
+  /* Reveal-on-scroll target. `Reveal` component toggles `is-visible`. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white shadow-xs transition-all hover:bg-zinc-800 hover:-translate-y-px hover:shadow-soft active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-40 disabled:translate-y-0 disabled:shadow-none dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 shadow-xs transition-all hover:bg-zinc-50 hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-40 disabled:translate-y-0 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-zinc-400 dark:hover:bg-zinc-800;
+  }
+  .btn-cta {
+    @apply relative inline-flex items-center justify-center gap-1.5 overflow-hidden rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 dark:bg-white dark:text-zinc-900;
+  }
+  .btn-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .btn-cta:hover::after {
+    transform: translateX(100%);
+  }
+  .input {
+    @apply w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 shadow-xs outline-none transition-all placeholder:text-zinc-400 focus:border-zinc-400 focus:shadow-soft dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-600;
+  }
+  .card {
+    @apply rounded-xl border border-zinc-200 bg-white shadow-soft dark:border-zinc-800 dark:bg-zinc-900;
+  }
+  .card-interactive {
+    @apply rounded-xl border border-zinc-200 bg-white shadow-soft transition-all hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700;
+  }
+  .kbd {
+    @apply inline-flex h-4 min-w-4 items-center justify-center rounded border border-zinc-200 bg-zinc-50 px-1 font-mono text-2xs text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-2xs font-medium text-zinc-600 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70 dark:text-zinc-400;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white shadow-xs transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 shadow-xs transition-colors hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-40 dark:text-zinc-400 dark:hover:bg-zinc-800;
+  }
+  .input {
+    @apply w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 shadow-xs outline-none transition-all placeholder:text-zinc-400 focus:border-zinc-400 focus:shadow-soft dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-600;
+  }
+  .card {
+    @apply rounded-xl border border-zinc-200 bg-white shadow-soft dark:border-zinc-800 dark:bg-zinc-900;
+  }
+  .kbd {
+    @apply inline-flex h-4 min-w-4 items-center justify-center rounded border border-zinc-200 bg-zinc-50 px-1 font-mono text-2xs text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400;
+  }
+}

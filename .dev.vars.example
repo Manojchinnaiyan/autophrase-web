@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local development (gitignored).
+# In production, set via: wrangler secret put NAME
+RAZORPAY_KEY_ID=rzp_test_xxx
+RAZORPAY_KEY_SECRET=xxx
+SESSION_SECRET=change-me-to-32-random-bytes
