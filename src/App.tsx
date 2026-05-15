@@ -3,6 +3,7 @@ import { Landing } from './pages/Landing';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { Pricing } from './pages/Pricing';
+import { Privacy } from './pages/Privacy';
 import { Dashboard } from './pages/Dashboard';
 import { RequireAuth } from './components/RequireAuth';
 import { RedirectIfAuthed } from './components/RedirectIfAuthed';
@@ -14,6 +15,7 @@ export default function App() {
       <Route element={<Layout />}>
         {/* Pricing stays public for both signed-out and signed-in users. */}
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/privacy" element={<Privacy />} />
 
         {/* Landing / SignIn / SignUp bounce signed-in users to /app so they
             don't see "Start trial" again after returning to the site. */}

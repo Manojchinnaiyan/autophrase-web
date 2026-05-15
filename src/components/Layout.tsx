@@ -71,6 +71,11 @@ export function Layout() {
                 Pricing
               </Link>
             )}
+            {onAppRoute && status && status.plan !== 'pro' && (
+              <Link to="/pricing" className="btn-primary h-8 text-sm">
+                Upgrade
+              </Link>
+            )}
             {appLinks.map((l) => (
               <Link
                 key={l.to}
@@ -154,6 +159,11 @@ export function Layout() {
                   <div className="px-3 pb-2 text-xs text-zinc-700 dark:text-zinc-300">
                     {status.user.email}
                   </div>
+                  {status.plan !== 'pro' && (
+                    <Link to="/pricing" className="btn-primary h-10 text-sm">
+                      Upgrade to Pro
+                    </Link>
+                  )}
                   <button
                     onClick={async () => {
                       await signout();

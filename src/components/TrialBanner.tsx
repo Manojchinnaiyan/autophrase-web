@@ -25,7 +25,6 @@ export function TrialBanner({ status }: TrialBannerProps) {
     );
   }
   const left = daysLeft(status.trialEndsAt);
-  if (left > 7) return null;
   return (
     <div className="mx-auto mb-4 flex max-w-3xl flex-col items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 sm:flex-row sm:items-center dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300">
       <Sparkles size={14} className="mt-0.5 flex-shrink-0" />
